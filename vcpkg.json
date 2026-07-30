@@ -1,0 +1,14 @@
+{
+  "name": "crypto-research-framework",
+  "version-string": "0.1.0",
+  "description": "A modular C++20 cryptography research framework.",
+  "builtin-baseline": "e03dc9b29710050cd1018bc5674688108658d327",
+  "dependencies": [
+    "gtest",
+    "nlohmann-json",
+    "opencv",
+    "openssl",
+    "secp256k1",
+    "spdlog"
+  ]
+}

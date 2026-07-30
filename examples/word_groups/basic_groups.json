@@ -1,0 +1,5 @@
+{
+  "color": ["black", "white"],
+  "object": ["moon", "tower"],
+  "number": ["one", "two"]
+}

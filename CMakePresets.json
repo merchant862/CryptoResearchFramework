@@ -1,0 +1,97 @@
+{
+  "version": 6,
+  "configurePresets": [
+    {
+      "name": "windows-debug",
+      "displayName": "Windows Debug",
+      "generator": "Visual Studio 17 2022",
+      "architecture": "x64",
+      "binaryDir": "${sourceDir}/build/windows-debug",
+      "environment": {
+        "VCPKG_DOWNLOADS": "${sourceDir}/.vcpkg-downloads",
+        "CUDA_PATH": "C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v13.3",
+        "CUDA_PATH_V13_3": "C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v13.3"
+      },
+      "cacheVariables": {
+        "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
+        "CMAKE_BUILD_TYPE": "Debug"
+      }
+    },
+    {
+      "name": "windows-cuda-debug",
+      "displayName": "Windows CUDA Debug",
+      "inherits": "windows-debug",
+      "binaryDir": "${sourceDir}/build/windows-cuda-debug",
+      "cacheVariables": {
+        "CRYPTO_RESEARCH_ENABLE_CUDA": "ON",
+        "CMAKE_CUDA_COMPILER": "C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v13.3/bin/nvcc.exe",
+        "CMAKE_CUDA_ARCHITECTURES": "120"
+      }
+    },
+    {
+      "name": "windows-release",
+      "displayName": "Windows Release",
+      "inherits": "windows-debug",
+      "binaryDir": "${sourceDir}/build/windows-release",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release"
+      }
+    },
+    {
+      "name": "windows-vs2026-debug",
+      "displayName": "Windows Debug (installed Visual Studio)",
+      "generator": "Visual Studio 18 2026",
+      "architecture": "x64",
+      "binaryDir": "${sourceDir}/build/windows-vs2026-debug",
+      "environment": {
+        "VCPKG_DOWNLOADS": "${sourceDir}/.vcpkg-downloads",
+        "CUDA_PATH": "C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v13.3",
+        "CUDA_PATH_V13_3": "C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v13.3"
+      },
+      "cacheVariables": {
+        "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
+        "CMAKE_BUILD_TYPE": "Debug"
+      }
+    },
+    {
+      "name": "windows-vs2026-cuda-debug",
+      "displayName": "Windows CUDA Debug (installed Visual Studio)",
+      "inherits": "windows-vs2026-debug",
+      "binaryDir": "${sourceDir}/build/windows-vs2026-cuda-debug",
+      "cacheVariables": {
+        "CRYPTO_RESEARCH_ENABLE_CUDA": "ON",
+        "CMAKE_CUDA_COMPILER": "C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v13.3/bin/nvcc.exe",
+        "CMAKE_CUDA_ARCHITECTURES": "120"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "windows-debug",
+      "configurePreset": "windows-debug"
+    },
+    {
+      "name": "windows-cuda-debug",
+      "configurePreset": "windows-cuda-debug"
+    },
+    {
+      "name": "windows-release",
+      "configurePreset": "windows-release"
+    },
+    {
+      "name": "windows-vs2026-debug",
+      "configurePreset": "windows-vs2026-debug"
+    },
+    {
+      "name": "windows-vs2026-cuda-debug",
+      "configurePreset": "windows-vs2026-cuda-debug"
+    }
+  ],
+  "testPresets": [
+    {
+      "name": "windows-debug",
+      "configurePreset": "windows-debug",
+      "output": { "outputOnFailure": true }
+    }
+  ]
+}

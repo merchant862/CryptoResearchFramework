@@ -1,0 +1,16 @@
+{
+  "plugin": "privatekeys_pw",
+  "network": "bitcoin-mainnet",
+  "target_address": "1KfZGvwZxsvSmemoCmEV75uqcNzYBHjkHZ",
+  "address_type": "p2pkh-base58",
+  "evidence_leads": {
+    "public_mirror_png": "evidence/0.2-btc-puzzle.png",
+    "public_mirror_sha256": "95b90a2c89958fc7798d8ef2f4bde78e970b4e8bcc7d49e882120e84646d339c",
+    "candidate_words": ["moon", "tower", "food", "breathe", "this", "subject", "real", "black"],
+    "notes": [
+      "the retained public PNG is 690x517 RGBA and has no sBIT chunk",
+      "breathe and stop are old Electrum words",
+      "simple BIP39 and obvious Electrum v2 candidates have already failed"
+    ]
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "name": "neutral-sample",
+  "description": "Local neutral fixture data for offline tooling tests.",
+  "asset_paths": [],
+  "notes": ["No secrets or wallet material are included."],
+  "word_group_files": ["examples/word_groups/basic_groups.json"],
+  "template_files": ["examples/templates/basic_template.json"],
+  "output_folder": "results/neutral-sample"
+}

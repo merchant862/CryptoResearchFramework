@@ -137,10 +137,10 @@ int main(int argc, char* argv[]) {
             }
         }
 
-        ensure_parent_directory(argv[3]);
-        ensure_parent_directory(argv[5]);
+        ensure_parent_directory(argv[4]);
+        ensure_parent_directory(argv[6]);
 
-        std::ofstream csv(argv[5]);
+        std::ofstream csv(argv[6]);
         if (!csv) {
             throw std::runtime_error("could not open csv output");
         }
@@ -160,8 +160,12 @@ int main(int argc, char* argv[]) {
             csv << csv_escape(term) << ',' << stats.count << ',' << type << ',' << stats.lines.size() << ','
                 << csv_escape(lines) << '\n';
         }
+        csv.flush();
+        if (!csv) {
+            throw std::runtime_error("could not write csv output");
+        }
 
-        std::ofstream json_output(argv[3]);
+        std::ofstream json_output(argv[4]);
         if (!json_output) {
             throw std::runtime_error("could not open json output");
         }
@@ -178,6 +182,11 @@ int main(int argc, char* argv[]) {
                            {"terms", rows},
                        }.dump(2)
                     << '\n';
+        json_output.flush();
+        if (!json_output) {
+            throw std::runtime_error("could not write json output");
+        }
+        std::cout << "Wrote " << argv[4] << " and " << argv[6] << '\n';
     } catch (const std::exception& error) {
         std::cerr << error.what() << '\n';
         return 1;

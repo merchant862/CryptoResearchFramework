@@ -9,29 +9,12 @@
   Target Address:
   1KfZGvwZxsvSmemoCmEV75uqcNzYBHjkHZ
 
-  Address Details:
-  - Type: Base58 P2PKH legacy Bitcoin address
-  - Balance: 0.20107284 BTC
-  - Total received: 0.20107284 BTC
-  - Total sent: 0 BTC
-  - Funded UTXOs: 5
-
   Important Findings:
   - `breathe` and `stop` are not BIP39 words.
   - `breathe` and `stop` are old Electrum words.
   - `food`, `liberty`, `proof`, `this` are not old Electrum words.
-  - PNG has `sBIT 4`, so low 4 bits are suspicious.
-  - `zsteg` found no clean seed/passphrase payload.
-  - Simple BIP39 12/24-word candidates failed.
-  - Electrum v2 obvious candidates failed.
-  - Old Electrum is a strong branch but exact words/order still unclear.
-
-  Existing Linux Scripts:
-  - btc-puzzle-checker.py
-  - btc-puzzle-parallel-checker.py
-  - btc-puzzle-electrum-old-checker.py
-  - btc-puzzle-brainwallet-checker.py
-  - candidate generators
+  - Image evidence and puzzle hints should be tracked by source, location, confidence, and transform.
+  - Public address tools are limited to address-string validation, formatting, and list comparison.
 
   Framework Plan:
   - C++20
@@ -43,6 +26,8 @@
   - libsecp256k1
   - OpenCV
   - future CUDA
+  - safe evidence text reporting
+  - public address reporting
 
   First C++ Phase:
   1. SHA-256

@@ -48,6 +48,14 @@ This utility compares already-public address strings only. It does not derive or
 
 Both tools accept public address strings only. They do not accept seed phrases or private keys, derive keys, or perform network calls.
 
+## Evidence text reports
+
+```powershell
+.\scripts\run_evidence_text_report.ps1 -Input .\analysis-output\png-report\extracted_text.txt -JsonReport .\reports\evidence_text.json -Csv .\reports\evidence_text.csv
+```
+
+This utility tokenizes local evidence text, counts repeated terms, classifies words/numbers/alphanumeric tokens, and records source line numbers. It is evidence triage only; it does not generate mnemonic candidates, validate seed phrases, derive wallet keys, or query balances.
+
 ## Local package
 
 ```powershell

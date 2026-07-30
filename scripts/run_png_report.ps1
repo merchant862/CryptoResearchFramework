@@ -7,6 +7,6 @@ param(
 $ErrorActionPreference = 'Stop'
 $root = Split-Path -Parent $PSScriptRoot
 Set-Location $root
-cmake --build --preset windows-debug --target crypto_research
+cmake --build --preset windows-debug --target png_report
 if ($LASTEXITCODE -ne 0) { throw 'PNG tool build failed.' }
-& "$root\build\windows-debug\Debug\crypto_research.exe" analyze-image $Image $Output
+& "$root\build\windows-debug\Debug\png_report.exe" --image $Image --out $Output

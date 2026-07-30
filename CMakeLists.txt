@@ -104,8 +104,10 @@ add_executable(address_format_report app/address_format_report.cpp)
 target_link_libraries(address_format_report PRIVATE crypto_research::core nlohmann_json::nlohmann_json)
 add_executable(address_intersection_report app/address_intersection_report.cpp)
 target_link_libraries(address_intersection_report PRIVATE crypto_research::core nlohmann_json::nlohmann_json)
+add_executable(evidence_text_report app/evidence_text_report.cpp)
+target_link_libraries(evidence_text_report PRIVATE nlohmann_json::nlohmann_json)
 
-install(TARGETS crypto_research_safe_benchmarks public_address_list_matcher png_report address_format_report address_intersection_report
+install(TARGETS crypto_research_safe_benchmarks public_address_list_matcher png_report address_format_report address_intersection_report evidence_text_report
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
 install(DIRECTORY docs/ DESTINATION ${CMAKE_INSTALL_DOCDIR})
 install(DIRECTORY examples/ DESTINATION examples)

@@ -1,15 +1,50 @@
-build/
-out/
+# vcpkg downloads (large binaries)
 .vcpkg-downloads/
+
+# Installers (large binaries)
+installers/
+*.exe
+*.msi
+*.zip
+*.tar.gz
+
+# Build directories
+build/
+build-*/
+build_*/
+out/
+cmake-build-*/
+x64/
+x86/
+Debug/
+Release/
+
+# vcpkg installed
+vcpkg_installed/
+
+# IDE
 .vs/
 .vscode/
 *.user
 *.suo
-*.VC.db
-*.VC.VC.opendb
+*.sln.docstates
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# CMake
 CMakeUserPresets.json
-analysis-output/
-reports/
-*.zip
-installers/*.exe
-installers/toolchain-status.json
+
+# Test / puzzle data (personal research files)
+test_words.txt
+puzzle_words.txt
+passphrases.txt
+*.raw
+*.json
+*.csv
+
+# Wordlists (keep english.txt, ignore others)
+wordlists/*
+!wordlists/english.txt

@@ -9,7 +9,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 option(CRYPTO_RESEARCH_BUILD_TESTS "Build the unit-test suite" ON)
-option(CRYPTO_RESEARCH_ENABLE_CUDA "Enable CUDA image-analysis acceleration when a CUDA compiler is available" OFF)
+option(CRYPTO_RESEARCH_ENABLE_CUDA "Enable CUDA image-analysis and brute-force acceleration when a CUDA compiler is available" OFF)
 
 find_package(OpenSSL REQUIRED)
 find_package(libsecp256k1 CONFIG REQUIRED)
@@ -25,7 +25,7 @@ if(CRYPTO_RESEARCH_ENABLE_CUDA)
         message(FATAL_ERROR "CRYPTO_RESEARCH_ENABLE_CUDA requires the CUDA Toolkit and an NVIDIA CUDA compiler.")
     endif()
     enable_language(CUDA)
-    set(CRYPTO_RESEARCH_GPU_SOURCE gpu/bitplane_cuda.cu)
+    set(CRYPTO_RESEARCH_GPU_SOURCE gpu/bitplane_cuda.cu gpu/brute_force_cuda.cu)
 endif()
 
 add_library(crypto_research_core
@@ -37,6 +37,9 @@ add_library(crypto_research_core
     core/utils/hex.cpp
     core/wordlists/local_wordlist.cpp
     core/utils/thread_pool.cpp
+    bitcoin/bip39/seed.cpp
+    bitcoin/bip32/xprv.cpp
+    bitcoin/address/segwit.cpp
     bitcoin/private_key.cpp
     bitcoin/p2pkh.cpp
     bitcoin/bip39/mnemonic.cpp
@@ -75,7 +78,6 @@ endif()
 target_compile_features(crypto_research_core PUBLIC cxx_std_20)
 
 if(MSVC)
-    # CUDA has its own option parser; keep MSVC-only warnings off nvcc's command line.
     target_compile_options(crypto_research_core PRIVATE
         $<$<COMPILE_LANGUAGE:CXX>:/W4>
         $<$<COMPILE_LANGUAGE:CXX>:/permissive->
@@ -89,7 +91,7 @@ else()
     )
 endif()
 
-add_executable(crypto_research app/main.cpp cli/address_command.cpp cli/image_command.cpp cli/batch_image_command.cpp)
+add_executable(crypto_research app/main.cpp cli/address_command.cpp cli/image_command.cpp cli/batch_image_command.cpp cli/brute_force_command.cpp)
 target_link_libraries(crypto_research PRIVATE crypto_research::core spdlog::spdlog nlohmann_json::nlohmann_json)
 
 add_executable(crypto_research_safe_benchmarks benchmarks/safe_benchmarks.cpp)
